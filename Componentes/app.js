@@ -1,33 +1,31 @@
 const { createApp } = Vue;
 
 const Table = {
-    props: {
-        bg_color: String,
-        products: Array,
-
-    },
+    props: ['datos', 'bgColor'],
     template: `
 
-                        <div :class="bg_color">
-                            <table class="table table-dark table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Name</th>
-                                        <th>Price </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="product of products" >
-                                    <td><img :src="product.img" width="150" :alt="product.tittle"></td>
-                                    <td>{{ product.tittle }}</td>
-                                    <td>  {{ product.price }} $</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>   
-    
-    `
+                   
+                            <table class="table table-striped " style="{background-color: bgColor}">
+                            
+                            <thead>
+                              <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Teléfono</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-for="(objeto, objetoIndex) in datos" :key="objetoIndex">
+                                <td>{{ objeto.nombre }}</td>
+                                <td>{{ objeto.apellido }}</td>
+                                <td>{{ objeto.telefono }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        `
+
+
+
 }
 
 createApp({
@@ -36,44 +34,30 @@ createApp({
     },
     data() {
         return {
-            productsArray: [
-                {
-                    id: 1,
-                    img:'./elrayo.jpg',
-                    tittle:'The coolest shirt you can buy!!! ',
-                    price: 15
-                },
-                {
-                    id: 2,
-                    img:'./elrayo.jpg',
-                    tittle:'The coolest shirt you can buy!!! ',
-                    price: 12.99
-                },
-                {
-                    id: 3,
-                    img:'./elrayo.jpg',
-                    tittle:'The coolest shirt you can buy!!! ',
-                    price: 18
-                },
-                {
-                    id: 4,
-                    img:'./elrayo.jpg',
-                    tittle:'The coolest shirt you can buy!!! ',
-                    price: 10
-                },
-                {
-                    id: 5,
-                    img:'./elrayo.jpg',
-                    tittle:'The coolest shirt you can buy!!! ',
-                    price: 23
-                },
-                {
-                    id: 6,
-                    img:'./elrayo.jpg',
-                    tittle:'The coolest shirt you can buy!!! ',
-                    price: 17.75
-                }
+            arrays: [
+                [
+                    { nombre: 'John', apellido: 'Doe', telefono: '123456789' },
+                    { nombre: 'Jane', apellido: 'Smith', telefono: '987654321' },
+                    { nombre: 'Mike', apellido: 'Johnson', telefono: '456789123' }
+                ],
+                [
+                    { nombre: 'Alice', apellido: 'Williams', telefono: '654987321' },
+                    { nombre: 'Bob', apellido: 'Brown', telefono: '321789654' },
+                    { nombre: 'Emma', apellido: 'Davis', telefono: '789123456' }
+                ],
+                [
+                    { nombre: 'David', apellido: 'Jones', telefono: '147258369' },
+                    { nombre: 'Olivia', apellido: 'Taylor', telefono: '369258147' },
+                    { nombre: 'Liam', apellido: 'Wilson', telefono: '258369147' }
+                ]
             ],
+            
+            color: ["#f2f2f2", "#b8b8b8", "#f2e4a"]
+
         }
+    },
+    mounted() {
+        
     }
 }).mount("#app")
+
