@@ -13,10 +13,8 @@
 <body>
     <div id="app">
         <div class="container">
-            <table-from-vue 
-            :products="productsArray"
-            :bg_Color="'bgGray'"
-            ></table-from-vue>
+            <table-from-vue v-for="(array, index) in arrays" :key="index" :datos="array" :bgColor="color[index]"></table-from-vue>
+
         </div>
     </div>
 
